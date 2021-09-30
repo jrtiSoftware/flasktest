@@ -1,0 +1,16 @@
+pyyaml
+
+flask
+flask-session
+flask-sqlalchemy
+flask-socketio
+
+websocket
+
+google
+google-api-python-client
+google-auth-oauthlib
+
+mysqlclient
+SQLAlchemy
+Flask-SQLAlchemy

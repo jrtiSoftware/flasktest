@@ -1,0 +1,7 @@
+google_client_id: 1062453666080-88j7c16rq8vvr4nsu5319pm4l053jblc.apps.googleusercontent.com
+redirect_uri: http://localhost:5000/callback
+scopes:
+- https://www.googleapis.com/auth/userinfo.profile
+- https://www.googleapis.com/auth/userinfo.email
+- openid
+- https://www.googleapis.com/auth/gmail.readonly
