@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+<style>
+    .container {
+        transform: translateY(300%);
+        margin: auto;
+        width:fit-content;
+        height:fit-content;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<body>
+    <form method="POST">
+        <div class="container">
+            <button class = btn type="submit">Authenticate</button>
+        </div>
+    </form>
+</body>
+{% endblock %}

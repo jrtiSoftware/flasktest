@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block head %}
+<style>
+    textarea {
+        margin: auto;
+        width: 100%;
+        max-width: 100%;
+        float: inside;
+        box-sizing:border-box
+    }
+    .child {
+        margin: auto;
+        padding: 5px;
+
+        width:fit-content;
+        height:fit-content;
+    }
+    .container {
+        transform: translateY(50%);
+        background-color: tomato;
+        color: white;
+        border: 2px solid black;
+        margin: auto;
+        width: 50%;
+        padding: 20px;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+
+
+<body>
+<form id="snippet" method="POST" action='#'>
+    <div class="container">
+        <div class = "child">
+            <a>Your email address is {{ data["emailAddress"] }}, and you have {{ data["messagesTotal"] }} messages in your Gmail.</a>
+        </div>
+        <div>
+            <label for="snippetdisplay"></label>
+            <textarea id="snippetdisplay" readonly style="resize: none;"></textarea>
+        </div>
+        <div class = "child">
+            <button id="snippetbutton" class="btn" type="submit">Random snippet</button>
+        </div>
+    </div>
+</form>
+</body>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function() {
+        socket.on('UpdateElem', function (data) {
+            // Theres probably a better way to do this but this is my first loop in js
+            for (var i = 0; i < data.length; i++) { // for every dictionary within data,
+                var j = data[i]
+                document.getElementById(j["id"]).textContent = j["text"]; // update element with data dict
+            }
+        });
+    })
+
+    $('form#snippet').submit(function() {
+        socket.emit('Snippet');
+        document.getElementById("snippetbutton").textContent = "Loading";
+        return false;
+    });
+</script>
+{% endblock %}

@@ -1,3 +1,5 @@
+# Jared Tauler 9/30/21
+
 import os
 import pathlib
 import yaml
@@ -5,6 +7,7 @@ import yaml
 from google.oauth2 import id_token
 from google_auth_oauthlib.flow import Flow
 import google.auth.transport.requests
+from googleapiclient.discovery import build
 
 from pip._vendor import cachecontrol
 
@@ -37,10 +40,8 @@ class GoogleSession():
             redirect_uri=redirect_uri
         )
 
-        print(self.flow.authorization_url())
 
-
-    def CreateCredentials(self, request, session):
+    def CreateCredentials(self, request):
         self.flow.fetch_token(authorization_response=request.url)  # Retrieve stuff from google auth
         credentials = self.flow.credentials
         request_session = requests.session()
@@ -55,3 +56,5 @@ class GoogleSession():
 
         return id_info, credentials
 
+def GmailResource(creds):
+    return build("gmail", "v1", credentials=creds)
